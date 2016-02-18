@@ -1,1 +1,1 @@
-web: testeqsite-admin run-program uwsgi --ini project/uwsgi.ini
+web: gunicorn testeqsite.wsgi --log-file -
