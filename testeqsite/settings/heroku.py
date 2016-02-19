@@ -6,4 +6,6 @@ try:
 except ImportError:
     print "Couldn't import settings.common"
 
-DATABASES['default'] = dj_database_url.config()
+DATABASES = {
+    'default': dj_database_url.config()
+}
