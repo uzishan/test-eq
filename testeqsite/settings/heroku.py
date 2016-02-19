@@ -1,3 +1,5 @@
+import dj_database_url
+
 # common settings
 try:
     from .common import *
