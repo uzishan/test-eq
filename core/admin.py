@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from core.models import Building
+
+
+class BuildingAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Building, BuildingAdmin)
