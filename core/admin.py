@@ -26,4 +26,4 @@ class BuildingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Building, BuildingAdmin)
-admin.site.register(Floor, F;pprAd,om)
+admin.site.register(Floor, FloorAdmin)
