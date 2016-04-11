@@ -21,5 +21,5 @@ class BuildingAdmin(admin.ModelAdmin):
     inlines = [FloorInline]
     pass
 
-bModels = [models.Building, models.Floor, models.Room, models.Sensor, models.SensorData]
-admin.site.register(bModels)
+
+admin.site.register(Building, BuildingAdmin)
