@@ -25,7 +25,7 @@ class FloorAdmin(admin.ModelAdmin):
     pass
 
 class BuildingAdmin(admin.ModelAdmin):
-    list_display = ('title')
+    fields = ('title')
     inlines = [FloorInline]
     pass
 
