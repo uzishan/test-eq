@@ -7,12 +7,16 @@ class SensorDataInline(admin.TabularInline):
     
 class SensorInline(admin.TabularInline):
     model = Sensor
+
+class SensorAdmin(admin.ModelAdmin):
     inlines = [SensorDataInline]
-
+    pass
 class RoomInline(admin.TabularInline):
-    model = Room
-    inlines = [SensorInline]
+    model = Room   
 
+class RoomAdmin(admin.ModelAdmin):
+    inlines = [SensorInline]
+    pass
 class FloorInline(admin.TabularInline):
     model = Floor
     
@@ -27,3 +31,5 @@ class BuildingAdmin(admin.ModelAdmin):
 
 admin.site.register(Building, BuildingAdmin)
 admin.site.register(Floor, FloorAdmin)
+admin.site.register(Room, RoomAdmin)
+admin.site.register(Sensor, SensorAdmin)
