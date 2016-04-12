@@ -6,7 +6,7 @@ from django.db import models
 class Building(models.Model):
     title = models.CharField(max_length=30)
     def __unicode__(self):
-       return 'Building: ' + self.title
+       return  self.title
     description = models.CharField(max_length=50)
     image_url = models.CharField(max_length=255)
     location_address = models.CharField(max_length=100)
@@ -17,12 +17,16 @@ class Building(models.Model):
 class Floor(models.Model):
     number = models.IntegerField()
     title = models.CharField(max_length=30)
+    def __unicode__(self):
+       return  self.title
     plans_image_url = models.CharField(max_length=255)
     building = models.ForeignKey('Building', on_delete=models.CASCADE)
 
 
 class Room(models.Model):
     title = models.CharField(max_length=30)
+    def __unicode__(self):
+       return  self.title
     type = models.CharField(max_length=30)
     surface = models.CharField(max_length=30)
     floor = models.ForeignKey('Floor', on_delete=models.CASCADE)
@@ -30,6 +34,8 @@ class Room(models.Model):
 
 class Sensor(models.Model):
     name = models.CharField(max_length=30)
+    def __unicode__(self):
+       return  self.name
     serial_no = models.IntegerField()
     type = models.CharField(max_length=30)
     location = models.CharField(max_length=30)
