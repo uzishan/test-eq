@@ -18,7 +18,7 @@ class Floor(models.Model):
     number = models.IntegerField()
     title = models.CharField(max_length=30)
     def __unicode__(self):
-       return  self.title + Building.title
+       return  self.title
     plans_image_url = models.CharField(max_length=255)
     building = models.ForeignKey('Building', on_delete=models.CASCADE)
 
