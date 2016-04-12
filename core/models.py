@@ -5,6 +5,8 @@ from django.db import models
 
 class Building(models.Model):
     title = models.CharField(max_length=30)
+    def __unicode__(self):
+       return 'Building: ' + self.title
     description = models.CharField(max_length=50)
     image_url = models.CharField(max_length=255)
     location_address = models.CharField(max_length=100)
