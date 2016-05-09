@@ -8,15 +8,22 @@ class Command(BaseCommand)
 
      def sensor_temp(self):
          t.randint(10,30)
+
          temperature = t+ "c"
 
-        f= open('workfile', 'w')
-        print f temperature
+            f= open('workfile', 'w')
+
+            print (f temperature)
 
 
     def sensor_humid(self):
+
         h.randint(10, 30)
-     humidity = h + "c"
+
+        humidity = h + "c"
 
          f = open('workfile', 'w')
-        print f humidity
+
+         print( f humidity)
+
+    #workfile is a placeholder name
