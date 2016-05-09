@@ -3,3 +3,7 @@ dev.sqllite.db
 .idea/
 
 *.pyc
+
+env
+staticfiles
+.env
