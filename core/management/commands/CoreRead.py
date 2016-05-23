@@ -1,29 +1,16 @@
+from random import randint
 
-from django.core.management.base import BaseCommand, CommandError
-from core.models import SensorData
+from django.core.management import BaseCommand
 
-class Command(BaseCommand)
+from core.models import *
+
+
+class Command(BaseCommand):
     help = 'Simulates data collection for Humidity and Temperature sensors'
 
-
-     def sensor_temp(self):
-         t.randint(10,30)
-
-         temperature = t+ "c"
-
-            f= open('workfile', 'w')
-
-            print (f temperature)
-
-
-    def sensor_humid(self):
-
-        h.randint(10, 30)
-
-        humidity = h + "c"
-
-         f = open('workfile', 'w')
-
-         print( f humidity)
-
-    #workfile is a placeholder name
+    def handle(self):
+            for Sensor.id in range(0, 1000):
+                if Sensor.type == "temperature":
+                    return Sensor.SensorData.value(randint(20, 40))
+                else:
+                    return Sensor.SensorData.value(randint(5, 10))
