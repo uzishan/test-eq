@@ -13,6 +13,7 @@ class Building(models.Model):
     location_address = models.CharField(max_length=100)
     latitude = models.IntegerField()
     longitude = models.IntegerField()
+    campus_name = models.CharField(max_length=255)
 
 
 class Floor(models.Model):
