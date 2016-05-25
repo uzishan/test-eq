@@ -8,7 +8,7 @@ from core.models import *
 class Command(BaseCommand):
     help = 'Simulates data collection for Humidity and Temperature sensors'
 
-    def handle(self):
+    def handle(self, *args, **options):
 
         sensors = Sensor.objects.all()
 
@@ -17,11 +17,11 @@ class Command(BaseCommand):
 
                 val = randint(18, 28)
 
-                sensor_data = SensorData(Sensor=s, value=val)
+                sensor_data = SensorData(sensor=s, value=val)
                 sensor_data.save()
 
             else:
 
                 val = randint(30, 70)
-                sensor_data = SensorData(Sensor=s, value=val)
+                sensor_data = SensorData(sensor=s, value=val)
                 sensor_data.save()
