@@ -28,11 +28,11 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
 
     def _get_avg_humidity(self, obj):
         # magia filtrului per buildingu asta.
-        h = obj.SensorData.objects.filter(sensor__type="humidity").aggregate(Avg('value'))
+        h = SensorData.objects.filter(sensor__type="humidity").aggregate(Avg('value'))
         return h
 
     def o_c(self, obj):
-        ocup = obj.randint(45, 65)
+        ocup = randint(45, 65)
         return ocup
 
 
