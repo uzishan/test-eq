@@ -13,7 +13,8 @@ class Command(BaseCommand):
             for Sensor.id in range(0, 1000):
 
                 if Sensor.type == "temperature":
-
-                    return Sensor.SensorData.value(randint(20, 40))
+                    Sensor.SensorData.value = randint(20, 40)
+                    return Sensor.SensorData.value
                 else:
+                    Sensor.SensorData.value = randint(5, 10)
                     return Sensor.SensorData.value(randint(5, 10))
