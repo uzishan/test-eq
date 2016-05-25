@@ -8,7 +8,7 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('pk',
                   'title',
                   'image_url',
-                  'location',
+                  'location_address',
                   'campus_name')
 
 
