@@ -7,7 +7,7 @@ from django.db.models import Avg
 class BuildingSerializer(serializers.HyperlinkedModelSerializer):
     location = serializers.CharField(source='location_address')
     avg_temperature = serializers.SerializerMethodField('_get_avg_temperature')
-    avg_humidity = serializers.SerializerMethodField('_get_avg_humidity')
+    avg_humidity = serializers.SerializerMethodField('_generate_occupancy_level')
     occupancy_level = serializers.SerializerMethodField('o_c')
 
     class Meta:
@@ -23,15 +23,15 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
 
     def _get_avg_temperature(self, obj):
         # magia filtrului per buildingu asta.
-        t = SensorData.objects.filter(sensor__type="temperature").aggregate(Avg('value'))
-        return t
+        temp = obj.Floor.Room.Sensor.SensorData.objects.filter(obj__pk='pk').filter(sensor__type="temperature").aggregate(Avg('value'))
+        return temp
 
     def _get_avg_humidity(self, obj):
         # magia filtrului per buildingu asta.
-        h = SensorData.objects.filter(sensor__type="humidity").aggregate(Avg('value'))
-        return h
+        hum = SensorData.objects.filter(sensor__type="humidity").aggregate(Avg('value'))
+        return hum
 
-    def o_c(self, obj):
+    def _generate_occupancy_level(self, obj):
         ocup = randint(45, 65)
         return ocup
 
