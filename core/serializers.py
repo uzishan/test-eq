@@ -23,12 +23,12 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
 
     def _get_avg_temperature(self, obj):
         # magia filtrului per buildingu asta.
-        temp = SensorData.objects.filter(obj__pk='id').filter(sensor__type="temperature").aggregate(Avg('value'))
+        temp = SensorData.objects.filter(obj__in='id').filter(sensor__type="temperature").aggregate(Avg('value'))
         return  temp
 
     def _get_avg_humidity(self, obj):
         # magia filtrului per buildingu asta.
-        hum = SensorData.objects.filter(obj__pk='id').filter(sensor__type="humidity").aggregate(Avg('value'))
+        hum = SensorData.objects.filter(obj__in='id').filter(sensor__type="humidity").aggregate(Avg('value'))
         return hum
 
     def _generate_occupancy_level(self, obj):
