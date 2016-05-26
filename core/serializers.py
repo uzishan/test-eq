@@ -1,5 +1,5 @@
 from core.models import *
-from rest_framework import serializers
+from rest_framework import serializers, filters
 from random import randint
 from django.db.models import Avg
 
@@ -21,15 +21,13 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
                   'avg_humidity',
                   'occupancy_level')
 
-    def _get_avg_temperature(self, obj):
+    def _get_avg_temperature(self):
         # magia filtrului per buildingu asta.
-        temp = SensorData.objects.filter(building__id='pk').filter(sensor__type="temperature").aggregate(Avg('value'))
-        return temp
+        return SensorData.objects.ilter(sensor__type="temperature").aggregate(Avg('value'))
 
-    def _get_avg_humidity(self, obj):
+    def _get_avg_humidity(self):
         # magia filtrului per buildingu asta.
-        hum = SensorData.objects.filter(sensor__type="humidity").aggregate(Avg('value'))
-        return hum
+        return SensorData.objects.filter(sensor__type="humidity").aggregate(Avg('value'))
 
     def _generate_occupancy_level(self, obj):
         ocup = randint(45, 65)
