@@ -13,15 +13,10 @@ class Command(BaseCommand):
         sensors = Sensor.objects.all()
 
         for s in sensors:
-            if s.type == "temperature":
-
+            val = 0
+            if s.type == 'TP':
                 val = randint(18, 28)
-
-                sensor_data = SensorData(sensor=s, value=val)
-                sensor_data.save()
-
-            else:
-
+            elif s.type == 'HU':
                 val = randint(30, 70)
-                sensor_data = SensorData(sensor=s, value=val)
-                sensor_data.save()
+            sensor_data = SensorData(sensor=s, value=val)
+            sensor_data.save()
