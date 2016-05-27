@@ -37,9 +37,15 @@ class Room(models.Model):
 
 
 class Sensor(models.Model):
+    SENSOR_TYPE_CHOICES = (
+
+        ('TP', 'Temperature'),
+        ('HU', 'Humidity'),
+    )
+
     name = models.CharField(max_length=30)
     serial_no = models.IntegerField()
-    type = models.CharField(max_length=30)
+    type = models.CharField(max_length=30, choices=SENSOR_TYPE_CHOICES, default='TP')
     location = models.CharField(max_length=30)
     unit_of_measurement = models.CharField(max_length=10)
     room = models.ForeignKey('Room', on_delete=models.CASCADE)
