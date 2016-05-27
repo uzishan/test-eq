@@ -14,9 +14,9 @@ class Command(BaseCommand):
 
         for s in sensors:
             val = 0
-            if s.type == Sensor.SENSOR_TYPE_CHOICES['TP']:
+            if s.type == 'TP':
                 val = randint(18, 28)
-            elif s.type == Sensor.SENSOR_TYPE_CHOICES['HU']:
+            elif s.type == 'HU':
                 val = randint(30, 70)
             sensor_data = SensorData(sensor=s, value=val)
             sensor_data.save()
