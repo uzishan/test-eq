@@ -16,17 +16,17 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
-from core import views
+from core.views import *
 
 router = routers.DefaultRouter()
-router.register(r'buildings', views.BuildingViewSet)
-router.register(r'floors', views.FloorViewSet)
-router.register(r'^buildings/(?P<pk>[0-9]+)/$', views.BuildingViewSet, views.FloorViewSet)
+router.register(r'buildings', BuildingViewSet)
+router.register(r'floors', FloorViewSet)
 
 
 urlpatterns = [
     url(r'^core/', include('core.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^', include(router.urls))
+    url(r'^', include(router.urls)),
+    url(r'^buildings/(?P<pk>[0-9]+)/$', FloorViewSet),
 ]

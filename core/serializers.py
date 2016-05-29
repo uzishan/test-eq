@@ -1,5 +1,5 @@
 from core.models import *
-from rest_framework import serializers, filters
+from rest_framework import serializers
 from random import randint
 from django.db.models import Avg
 
