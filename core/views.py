@@ -2,7 +2,6 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from core.serializers import BuildingSerializer, FloorSerializer
 from core.models import *
-# Create your views here.
 from django.http import HttpResponse
 
 
@@ -16,6 +15,8 @@ class BuildingViewSet(viewsets.ModelViewSet):
     """
     queryset = Building.objects.all().order_by('pk')
     serializer_class = BuildingSerializer
+    queryset = Floor.objects.all()
+    serializer_class = FloorSerializer
 
 
 class FloorViewSet(viewsets.ModelViewSet):

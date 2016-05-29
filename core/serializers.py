@@ -37,6 +37,13 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
         ocup = randint(45, 65)
         return ocup
 
+    def _get_building_detail(request, pk):
+        """
+        Retrieve, update or delete a code snippet.
+        """
+        build = Building.objects.get(pk=pk)
+        serializer = FloorSerializer(build)
+        return FloorSerializer(serializer.data)
 
 class FloorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
