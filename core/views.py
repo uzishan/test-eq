@@ -15,9 +15,6 @@ class BuildingViewSet(viewsets.ModelViewSet):
     """
     queryset = Building.objects.all().order_by('pk')
     serializer_class = BuildingSerializer
-    queryset = Floor.objects.all()
-    serializer_class = FloorSerializer
-
 
 class FloorViewSet(viewsets.ModelViewSet):
     """
