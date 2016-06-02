@@ -27,7 +27,8 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
                   'campus_name',
                   'avg_temperature',
                   'avg_humidity',
-                  'occupancy_level')
+                  'occupancy_level',
+                  'floors')
 
     def _get_avg_temperature(self, obj):
         # magia filtrului per buildingu asta.
