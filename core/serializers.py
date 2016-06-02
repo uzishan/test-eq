@@ -4,11 +4,19 @@ from random import randint
 from django.db.models import Avg
 
 
+class FloorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Floor
+        fields = ('number',
+                  'title')
+
+
 class BuildingSerializer(serializers.HyperlinkedModelSerializer):
     location = serializers.CharField(source='location_address')
     avg_temperature = serializers.SerializerMethodField('_get_avg_temperature')
     avg_humidity = serializers.SerializerMethodField('_get_avg_humidity')
     occupancy_level = serializers.SerializerMethodField('_get_occupancy_level')
+    floors = FloorSerializer(many=True)
 
     class Meta:
         model = Building
@@ -37,8 +45,4 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
         ocup = randint(45, 65)
         return ocup
 
-class FloorSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Floor
-        fields = ('number',
-                  'title')
+
