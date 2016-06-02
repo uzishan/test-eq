@@ -15,10 +15,3 @@ class BuildingViewSet(viewsets.ModelViewSet):
     """
     queryset = Building.objects.all().order_by('pk')
     serializer_class = BuildingSerializer
-
-class FloorViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows Floors to be viewed or edited.
-    """
-    queryset = Floor.objects.all()
-    serializer_class = FloorSerializer
