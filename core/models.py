@@ -26,7 +26,7 @@ class Floor(models.Model):
         return self.title
 
     class Meta:
-        unique_together = ('title', 'number')
+        ordering = ['number']
 
 
 class Room(models.Model):
