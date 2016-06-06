@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from core.serializers import BuildingSerializer, FloorSerializer
+from core.serializers import BuildingSerializer, BuildingSubSerializer
 from core.models import *
 from django.http import HttpResponse
 
@@ -10,8 +10,12 @@ def index(request):
 
 
 class BuildingViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows Buildings to be viewed or edited.
-    """
+
     queryset = Building.objects.all().order_by('pk')
     serializer_class = BuildingSerializer
+
+
+class BuildingSubViewSet(viewsets.ModelViewSet):
+
+    queryset = Building.objects.all().order_by('pk')
+    serializer_class = BuildingSubSerializer
