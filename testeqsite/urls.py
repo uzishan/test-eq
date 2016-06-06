@@ -20,7 +20,7 @@ from core.views import *
 
 router = routers.DefaultRouter()
 router.register(r'buildings', BuildingViewSet)
-router.register(r'buildings/(?P<pk>[\d]+)/$', BuildingSubViewSet)
+router.register(r'buildings/(?P<buildings__pk>[\d]+)', BuildingSubViewSet)
 
 
 urlpatterns = [
