@@ -11,6 +11,7 @@ from django.shortcuts import render
 
 
 class BuildingViewSet(viewsets.ModelViewSet):
+    queryset = Building.objects.all()
 
     def get_serializer_class(self):
         if self.action == 'list':
