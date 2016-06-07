@@ -6,12 +6,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-def index(request):
-    return HttpResponse("Hello, User. You are at the Core index!")
+#def index(request):
+   # return HttpResponse("Hello, User. You are at the Core index!")
 
 
 class BuildingViewSet(viewsets.ModelViewSet):
-    queryset = Building.objects.all().order_by('pk')
+
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.BuildingSerializer
