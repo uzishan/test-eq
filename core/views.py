@@ -1,7 +1,6 @@
-from django.shortcuts import render
+
 from rest_framework import viewsets
 from core.serializers import BuildingSerializer, BuildingSubSerializer
-from core.models import *
 from django.http import HttpResponse
 
 
@@ -11,11 +10,8 @@ def index(request):
 
 class BuildingViewSet(viewsets.ModelViewSet):
 
-    queryset = Building.objects.all().order_by('pk')
-    serializer_class = BuildingSerializer
-
-
-class BuildingSubViewSet(viewsets.ModelViewSet):
-
-    queryset = Building.objects.all().order_by('pk')
-    serializer_class = BuildingSubSerializer
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return BuildingSerializer
+        if self.action == 'retrieve':
+            return BuildingSubSerializer
