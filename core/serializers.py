@@ -46,12 +46,7 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
         return ocup
 
 
-class BuildingSubSerializer(serializers.HyperlinkedModelSerializer):
-    location = serializers.CharField(source='location_address')
-    avg_temperature = serializers.SerializerMethodField('_get_avg_temperature')
-    avg_humidity = serializers.SerializerMethodField('_get_avg_humidity')
-    occupancy_level = serializers.SerializerMethodField('_get_occupancy_level')
-    floors = FloorSerializer(many=True, read_only=True)
+class BuildingSubSerializer(BuildingSerializer):
 
     class Meta:
         model = Building
