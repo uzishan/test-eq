@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-#def index(request):
-   # return HttpResponse("Hello, User. You are at the Core index!")
+def index(request):
+    return HttpResponse("Hello, User. You are at the Core index!")
 
 
 class BuildingViewSet(viewsets.ModelViewSet):
