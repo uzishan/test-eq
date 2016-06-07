@@ -1,6 +1,6 @@
 
 from rest_framework import viewsets
-from core.serializers import BuildingSerializer, BuildingSubSerializer
+from core import serializers
 from django.http import HttpResponse
 
 
@@ -12,6 +12,6 @@ class BuildingViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list':
-            return BuildingSerializer
+            return serializers.BuildingSerializer
         if self.action == 'retrieve':
-            return BuildingSubSerializer
+            return serializers.BuildingSubSerializer

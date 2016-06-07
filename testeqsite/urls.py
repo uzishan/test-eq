@@ -22,7 +22,6 @@ router = routers.DefaultRouter()
 router.register(r'buildings', BuildingViewSet)
 
 
-
 urlpatterns = [
     url(r'^core/', include('core.urls')),
     url(r'^admin/', admin.site.urls),
