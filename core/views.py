@@ -11,7 +11,7 @@ def index(request):
     return HttpResponse("Hello, User. You are at the Core index!")
 
 
-class BuildingViewSet(viewsets.ViewSet):
+class BuildingViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = Building.objects.all()
