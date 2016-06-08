@@ -12,7 +12,7 @@ def index(request):
 
 class BuildingViewSet(viewsets.ModelViewSet):
 
-    queryset = Building.objects.all().Floor.objects.all()
+    queryset = Building.objects.all()
     serializer_class = serializers.BuildingSerializer
 
     def get_serializer_class(self):
