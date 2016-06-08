@@ -4,22 +4,58 @@ from core.serializers import *
 from core.models import *
 from django.http import HttpResponse
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 
 
-def index(request):
-    return HttpResponse("Hello, User. You are at the Core index!")
+class JSONResponse(HttpResponse):
+
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
 
 
-class BuildingViewSet(viewsets.ModelViewSet):
+@csrf_exempt
+def building_list(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        buildings = Building.objects.all()
+        serializer = BuildingSerializer(buildings, many=True)
+        return JSONResponse(serializer.data)
 
-    def list(self, request):
-        queryset = Building.objects.all()
-        serializer = BuildingSerializer(queryset, many=True)
-        return Response(serializer.data)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = BuildingSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONResponse(serializer.data, status=201)
+        return JSONResponse(serializer.errors, status=400)
 
-    def retrieve(self, request, pk=None):
-        queryset = Building.objects.all()
-        building = get_object_or_404(queryset, pk=pk)
-        serializer = BuildingSubSerializer(building)
-        return Response(serializer.data)
+
+@csrf_exempt
+def building_detail(request, pk):
+
+    try:
+        buildings = Building.objects.get(pk=pk)
+    except Building.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = BuildingSubSerializer(buildings)
+        return JSONResponse(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = BuildingSubSerializer(buildings, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONResponse(serializer.data)
+        return JSONResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        Building.delete()
+        return HttpResponse(status=204)

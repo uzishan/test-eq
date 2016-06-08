@@ -19,7 +19,7 @@ from rest_framework import routers
 from core.views import *
 
 router = routers.DefaultRouter()
-router.register(r'buildings', BuildingViewSet)
+#router.register(r'buildings', BuildingViewSet)
 
 
 urlpatterns = [
@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include(router.urls)),
+    url(r'^', include('buildings.urls')),
 ]
