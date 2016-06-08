@@ -19,7 +19,7 @@ from rest_framework import routers
 from core.views import *
 
 router = routers.DefaultRouter()
-#router.register(r'buildings', BuildingViewSet)
+router.register(r'buildings', BuildingViewSet)
 
 
 urlpatterns = [
