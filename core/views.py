@@ -13,10 +13,10 @@ def index(request):
 class BuildingViewSet(viewsets.ModelViewSet):
 
     queryset = Building.objects.all().Floor.objects.all()
+    serializer_class = serializers.BuildingSerializer
 
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.BuildingSerializer
         if self.action == 'retrieve':
             return serializers.BuildingSubSerializer
-
