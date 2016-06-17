@@ -20,3 +20,4 @@ class BuildingViewSet(viewsets.ModelViewSet):
             return serializers.BuildingSerializer
         if self.action == 'retrieve':
             return serializers.BuildingSubSerializer
+        return serializers.BuildingSerializer
