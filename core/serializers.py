@@ -16,6 +16,7 @@ class BuildingSerializer(serializers.HyperlinkedModelSerializer):
     avg_temperature = serializers.SerializerMethodField('_get_avg_temperature')
     avg_humidity = serializers.SerializerMethodField('_get_avg_humidity')
     occupancy_level = serializers.SerializerMethodField('_get_occupancy_level')
+    floors = FloorSerializer(many=True)
 
     class Meta:
         model = Building
