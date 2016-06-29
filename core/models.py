@@ -61,3 +61,6 @@ class SensorData(models.Model):
     sensor = models.ForeignKey('Sensor', on_delete=models.CASCADE)
     timestamp = models.DateTimeField('Read date', auto_now=True)
     value = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name
