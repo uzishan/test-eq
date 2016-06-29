@@ -1,9 +1,9 @@
-from django.shortcuts import render
+
 from rest_framework import viewsets
-from core.serializers import BuildingSerializer, FloorSerializer
+from core import serializers
 from core.models import *
-# Create your views here.
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
@@ -11,16 +11,13 @@ def index(request):
 
 
 class BuildingViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows Buildings to be viewed or edited.
-    """
-    queryset = Building.objects.all().order_by('pk')
-    serializer_class = BuildingSerializer
 
+    queryset = Building.objects.all()
+    serializer_class = serializers.BuildingSerializer
 
-class FloorViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows Floors to be viewed or edited.
-    """
-    queryset = Floor.objects.all()
-    serializer_class = FloorSerializer
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return serializers.BuildingSerializer
+        if self.action == 'retrieve':
+            return serializers.BuildingSubSerializer
+        return serializers.BuildingSerializer
