@@ -3,7 +3,7 @@ from django.contrib import admin
 from core.models import Building, Floor, Room, Sensor, SensorData
 
 
-class SensorDataInline(admin.TabularInline):
+class SensorDataAdmin(admin.ModelAdmin):
     model = SensorData
 
 
@@ -12,7 +12,6 @@ class SensorInline(admin.TabularInline):
 
 
 class SensorAdmin(admin.ModelAdmin):
-    inlines = [SensorDataInline]
     pass
 
 
@@ -43,3 +42,4 @@ admin.site.register(Building, BuildingAdmin)
 admin.site.register(Floor, FloorAdmin)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(Sensor, SensorAdmin)
+admin.site.register(SensorData, SensorDataAdmin)
